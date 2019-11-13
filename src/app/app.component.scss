@@ -1,0 +1,19 @@
+.title {
+  display: flex;
+  justify-content: space-between;
+  height: 5vh;
+}
+.source-container {
+  display: flex;
+  padding: 0;
+
+  height: 800px;
+  ngx-codemirror {
+    width: 50%;
+    ::ng-deep {
+      .CodeMirror {
+        height: 95vh;
+      }
+    }
+  }
+}
