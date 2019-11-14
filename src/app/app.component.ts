@@ -11,7 +11,7 @@ export class AppComponent implements OnInit {
   global: Global;
   dialog: MatDialog;
   codeOptions: any;
-  preViewCodeOptions: any;
+  previewCodeOptions: any;
   code: string;
   previewCode: string;
   options: any;
@@ -35,7 +35,7 @@ export class AppComponent implements OnInit {
       theme: 'monokai',
       mode: 'javascript'
     };
-    this.preViewCodeOptions = {
+    this.previewCodeOptions = {
       lineNumbers: true,
       readOnly: true,
       theme: 'monokai',
@@ -149,6 +149,7 @@ export class AppComponent implements OnInit {
     this.selectedLanguageType = settings.selectedLanguage;
     this.codeOptions.mode = settings.codeEditorMode;
     this.code = settings.code;
+    this.previewCode = settings.previewCode;
     if (this.code === this.globalData[this.selectedLanguageType]) {
       this.codeChanged = false;
     } else {
@@ -161,20 +162,25 @@ export class AppComponent implements OnInit {
       case 'html':
         this.options.end_with_newline = true;
         this.codeOptions.mode = 'htmlmixed';
+        this.previewCodeOptions.mode = 'htmlmixed';
         break;
       case 'css':
         this.options.indent_size = 1;
         this.codeOptions.mode = 'css';
+        this.previewCodeOptions.mode = 'css';
         break;
       case 'js':
         this.options.preserve_newlines = true;
         this.codeOptions.mode = 'javascript';
+        this.previewCodeOptions.mode = 'javascript';
         break;
       case 'sql':
         this.codeOptions.mode = 'sql';
+        this.previewCodeOptions.mode = 'sql';
         break;
       case 'json':
         this.codeOptions.mode = 'application/json';
+        this.previewCodeOptions.mode = 'application/json';
         break;
       default:
         break;
@@ -209,7 +215,9 @@ export class AppComponent implements OnInit {
         sqlOptions: this.sqlOptions,
         selectedLanguage: this.selectedLanguageType,
         codeEditorMode: this.codeOptions.mode,
-        code: this.code
+        code: this.code,
+        previewCodeEditorMode: this.previewCodeOptions.mode,
+        previewCode: this.previewCode,
       };
     }
     localStorage.setItem('beautifierSettings', JSON.stringify(settings));
